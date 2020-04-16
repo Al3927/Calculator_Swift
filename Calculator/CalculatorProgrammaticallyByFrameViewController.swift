@@ -8,6 +8,15 @@
 
 import UIKit
 
+class setStack: UIStackView {
+    var sizeee: CGSize {
+        return self.superview!.frame.size
+    }
+    override var intrinsicContentSize: CGSize {
+        return sizeee
+    }
+}
+
 class CalculatorProgrammaticallyByFrameViewController: UIViewController {
     
     var Calculator = calculator()
@@ -65,14 +74,16 @@ class CalculatorProgrammaticallyByFrameViewController: UIViewController {
         
         buttonArray[0][0].widthAnchor.constraint(equalTo: buttonArray[0][1].widthAnchor, multiplier: 3.0).isActive = true
         
-        let VStack = UIStackView(arrangedSubviews: [hStack0, hStack1, hStack2, hStack3, hStack4, hStack5])
+        let VStack = setStack(arrangedSubviews: [hStack0, hStack1, hStack2, hStack3, hStack4, hStack5])
         //VStack.bounds = CGRect(x: 10.0, y: 10.0, width: 90.0, height: 90.0)
         //VStack.bounds.origin = CGPoint(x: -12, y: -(view.bounds.maxY - (buttonsize*6 + 12*5)))
         VStack.axis = .vertical
-        VStack.distribution = .fill
+        VStack.distribution = .fillEqually
         VStack.alignment = .fill
         VStack.spacing = spacing
         VStack.translatesAutoresizingMaskIntoConstraints = false
+        
+        
         autoVC.view.addSubview(VStack)
         
        
@@ -82,15 +93,16 @@ class CalculatorProgrammaticallyByFrameViewController: UIViewController {
         
 //        VStack.bounds.size = CGSize(width: autoVC.view.bounds.width, height: autoVC.view.bounds.height)
 //        autoVC.view.bounds.origin = CGPoint(x: 20, y: (view.bounds.maxY * 0.3))
-        
+        VStack.frame.origin = CGPoint(x: 0, y: 0)
         VStack.frame.size = CGSize(width: autoVC.view.frame.width, height: autoVC.view.frame.height)
+        VStack.bounds.size = CGSize(width: autoVC.view.frame.width, height: autoVC.view.frame.height)
 //        autoVC.view.frame.size = CGSize(width: self.view.frame.size.width, height: btnSize * 6 + 12 * 6)
             //buttonsize*6 + 12*6)
         
         //VStack.bounds.size = view.systemLayoutSizeFitting(VStack.bounds.size)
         
-        autoVC.view.frame.size = CGSize(width: self.view.frame.size.width, height: btnSize * 6 + spacing * 7)
-        autoVC.view.frame.origin = CGPoint(x: 20, y: (view.bounds.maxY - autoVC.view.frame.height))
+        autoVC.view.frame.size = CGSize(width: self.view.frame.size.width - spacing * 2, height: btnSize * 6 + spacing * 7)
+        autoVC.view.frame.origin = CGPoint(x: spacing, y: (view.bounds.maxY - autoVC.view.frame.height))
         
         
          print("\(buttonArray[1][0].frame.size.height), \(buttonsize) , \(VStack.frame), \((autoVC.view.frame)), view width: \(view.bounds.width) \n")
@@ -117,9 +129,9 @@ class CalculatorProgrammaticallyByFrameViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
 
-        autoVC.view.frame.origin = CGPoint(x: 20, y: (view.bounds.maxY - autoVC.view.frame.height))
+         autoVC.view.frame.size = CGSize(width: self.view.frame.size.width - spacing * 2, height: btnSize * 6 + spacing * 7)
         
-        autoVC.view.frame.size = CGSize(width: self.view.frame.size.width, height: btnSize * 6 + spacing * 7)
+        autoVC.view.frame.origin = CGPoint(x: spacing, y: (view.bounds.maxY - autoVC.view.frame.height))
         //autoVC.view.frame.size = CGSize(width: self.view.frame.size.width, height: buttonsize2*6 + 12*6)
         
 //        autoVC.view.frame.origin = CGPoint(x: 20, y: (view.bounds.maxY - autoVC.view.frame.height))
@@ -212,8 +224,8 @@ class CalculatorProgrammaticallyByFrameViewController: UIViewController {
     func setLabel(_ label: UILabel) {
         //label.text = "123456"
         label.attributedText = configureLabel()
-        label.frame.size = CGSize.zero
-        label.sizeToFit()
+        label.frame.size = CGSize(width: self.view.frame.width, height: btnSize)
+        //label.sizeToFit()
     }
 
     func layoutTrait(traitCollection: UITraitCollection)
