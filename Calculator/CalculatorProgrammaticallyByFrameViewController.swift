@@ -265,9 +265,7 @@ extension CalculatorProgrammaticallyByFrameViewController {
     
     private var buttonsize1: CGFloat {
         
-        //view height = y spacing = x
-        //can btnSize * 6 + x * 6 <= y
-        //GPT ta co: y - 3x <= 0
+        
            return (self.view.bounds.height - spacing * 7)/6
         
        }
