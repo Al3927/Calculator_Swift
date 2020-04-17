@@ -41,61 +41,7 @@ class CalculatorProgrammaticallyByFrameViewController: UIViewController {
         
         print("1")
         
-        let buttonArray: [[UIButton]] = [
-            [CreatButton(text: "AC"), CreatButton(color: UIColor.orange, text: "÷")],
-            [CreatButton(text: "7"), CreatButton(text: "8"), CreatButton(text: "9"), CreatButton(color: UIColor.orange, text: "x")],
-            [CreatButton(text: "4"), CreatButton(text: "5"), CreatButton(text: "6"), CreatButton(color: UIColor.orange, text: "-")],
-            [CreatButton(text: "1"), CreatButton(text: "2"), CreatButton(text: "3"), CreatButton(color: UIColor.orange, text: "+")],
-            [CreatButton(text: "0"),CreatButton(text: "."), CreatButton(color: UIColor.orange, text: "=")]
-            
-           ]
-        
-//        let number0 = buttonArray[4][0]
-//        let special = buttonArray[4][1]
-//        let views = ["n0": number0, "sp": special]
-//        let stackView_equal_H = NSLayoutConstraint.constraints(withVisualFormat: "H:|[n0]-[sp(==n0)]", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: views)
-//        view.addConstraints(stackView_equal_H)
-        
-       
-        
-        //view.addConstraints([equalWidthForNumber0])
-        
-        setLabel(result)
-        
-        let hStack0 = creatStack(buttonArray: [result])
-        let hStack1 = creatStack(buttonArray: buttonArray[0], isFillEqually: false)
-        let hStack2 = creatStack(buttonArray: buttonArray[1])
-        let hStack3 = creatStack(buttonArray: buttonArray[2])
-        let hStack4 = creatStack(buttonArray: buttonArray[3])
-        let hStack5 = creatStack(buttonArray: buttonArray[4], isFillEqually: false)
-        
-        buttonArray[4][0].widthAnchor.constraint(equalTo: buttonArray[4][1].widthAnchor, multiplier: 2.0).isActive = true
-        buttonArray[4][1].widthAnchor.constraint(equalTo: buttonArray[4][2].widthAnchor, multiplier: 1.0).isActive = true
-        
-        buttonArray[0][0].widthAnchor.constraint(equalTo: buttonArray[0][1].widthAnchor, multiplier: 3.0).isActive = true
-        
-        let VStack = setStack(arrangedSubviews: [hStack0, hStack1, hStack2, hStack3, hStack4, hStack5])
-        //VStack.bounds = CGRect(x: 10.0, y: 10.0, width: 90.0, height: 90.0)
-        //VStack.bounds.origin = CGPoint(x: -12, y: -(view.bounds.maxY - (buttonsize*6 + 12*5)))
-        VStack.axis = .vertical
-        VStack.distribution = .fillEqually
-        VStack.alignment = .fill
-        VStack.spacing = spacing
-        VStack.translatesAutoresizingMaskIntoConstraints = false
-        
-        
-        autoVC.view.addSubview(VStack)
-        
-       
-        
-        
-        
-        
-//        VStack.bounds.size = CGSize(width: autoVC.view.bounds.width, height: autoVC.view.bounds.height)
-//        autoVC.view.bounds.origin = CGPoint(x: 20, y: (view.bounds.maxY * 0.3))
-        VStack.frame.origin = CGPoint(x: 0, y: 0)
-        VStack.frame.size = CGSize(width: autoVC.view.frame.width, height: autoVC.view.frame.height)
-        VStack.bounds.size = CGSize(width: autoVC.view.frame.width, height: autoVC.view.frame.height)
+        creatVStack()
 //        autoVC.view.frame.size = CGSize(width: self.view.frame.size.width, height: btnSize * 6 + 12 * 6)
             //buttonsize*6 + 12*6)
         
@@ -105,9 +51,67 @@ class CalculatorProgrammaticallyByFrameViewController: UIViewController {
         autoVC.view.frame.origin = CGPoint(x: spacing, y: (view.bounds.maxY - autoVC.view.frame.height))
         
         
-         print("\(buttonArray[1][0].frame.size.height), \(buttonsize) , \(VStack.frame), \((autoVC.view.frame)), view width: \(view.bounds.width) \n")
+         //print("\(buttonArray[1][0].frame.size.height), \(buttonsize) , \(VStack.frame), \((autoVC.view.frame)), view width: \(view.bounds.width) \n")
         
 
+    }
+    
+    private func creatVStack() {
+        let buttonArray: [[UIButton]] = [
+                    [CreatButton(text: "AC"), CreatButton(color: UIColor.orange, text: "÷")],
+                    [CreatButton(text: "7"), CreatButton(text: "8"), CreatButton(text: "9"), CreatButton(color: UIColor.orange, text: "x")],
+                    [CreatButton(text: "4"), CreatButton(text: "5"), CreatButton(text: "6"), CreatButton(color: UIColor.orange, text: "-")],
+                    [CreatButton(text: "1"), CreatButton(text: "2"), CreatButton(text: "3"), CreatButton(color: UIColor.orange, text: "+")],
+                    [CreatButton(text: "0"),CreatButton(text: "."), CreatButton(color: UIColor.orange, text: "=")]
+                    
+                   ]
+                
+        //        let number0 = buttonArray[4][0]
+        //        let special = buttonArray[4][1]
+        //        let views = ["n0": number0, "sp": special]
+        //        let stackView_equal_H = NSLayoutConstraint.constraints(withVisualFormat: "H:|[n0]-[sp(==n0)]", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: views)
+        //        view.addConstraints(stackView_equal_H)
+                
+               
+                
+                //view.addConstraints([equalWidthForNumber0])
+                
+                setLabel(result)
+                
+                let hStack0 = creatStack(buttonArray: [result])
+                let hStack1 = creatStack(buttonArray: buttonArray[0], isFillEqually: false)
+                let hStack2 = creatStack(buttonArray: buttonArray[1])
+                let hStack3 = creatStack(buttonArray: buttonArray[2])
+                let hStack4 = creatStack(buttonArray: buttonArray[3])
+                let hStack5 = creatStack(buttonArray: buttonArray[4], isFillEqually: false)
+                
+                buttonArray[4][0].widthAnchor.constraint(equalTo: buttonArray[4][1].widthAnchor, multiplier: 2.0).isActive = true
+                buttonArray[4][1].widthAnchor.constraint(equalTo: buttonArray[4][2].widthAnchor, multiplier: 1.0).isActive = true
+                
+                buttonArray[0][0].widthAnchor.constraint(equalTo: buttonArray[0][1].widthAnchor, multiplier: 3.0).isActive = true
+                
+                let VStack = setStack(arrangedSubviews: [hStack0, hStack1, hStack2, hStack3, hStack4, hStack5])
+                //VStack.bounds = CGRect(x: 10.0, y: 10.0, width: 90.0, height: 90.0)
+                //VStack.bounds.origin = CGPoint(x: -12, y: -(view.bounds.maxY - (buttonsize*6 + 12*5)))
+                VStack.axis = .vertical
+                VStack.distribution = .fillEqually
+                VStack.alignment = .fill
+                VStack.spacing = spacing
+                VStack.translatesAutoresizingMaskIntoConstraints = false
+                
+                
+                autoVC.view.addSubview(VStack)
+                
+               
+                
+                
+                
+                
+        //        VStack.bounds.size = CGSize(width: autoVC.view.bounds.width, height: autoVC.view.bounds.height)
+        //        autoVC.view.bounds.origin = CGPoint(x: 20, y: (view.bounds.maxY * 0.3))
+                VStack.frame.origin = CGPoint(x: 0, y: 0)
+                VStack.frame.size = CGSize(width: autoVC.view.frame.width, height: autoVC.view.frame.height)
+                VStack.bounds.size = CGSize(width: autoVC.view.frame.width, height: autoVC.view.frame.height)
     }
     
     private func UpdateViewFromModel()
@@ -128,6 +132,8 @@ class CalculatorProgrammaticallyByFrameViewController: UIViewController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
+        
+        //creatVStack()
 
          autoVC.view.frame.size = CGSize(width: self.view.frame.size.width - spacing * 2, height: btnSize * 6 + spacing * 7)
         
